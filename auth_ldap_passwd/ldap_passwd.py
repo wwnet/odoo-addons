@@ -23,9 +23,9 @@ class res_users(osv.osv):
         # Find out the login name
         cr.execute('SELECT login FROM res_users WHERE id=%s AND active=TRUE', (int(uid),))
         res = cr.fetchone()
-        _logger.info("Trying to change LDAP password for user %s" % res[0])
 
         if res:
+            _logger.info("Changing LDAP password for user %s" % res[0])
             ldap_obj = self.pool['res.company.ldap']
 
             for conf in ldap_obj.get_ldap_dicts(cr):
@@ -54,5 +54,8 @@ class res_users(osv.osv):
 
                 except ldap.LDAPError, e:
                     _logger.error('An LDAP exception occurred: %s', e)
+        else:
+            _logger.error('User id %d does not exist in the database' % int(uid))
 
+        _logger.error('User %s not found in LDAP' % res[0])
         raise openerp.exceptions.except_osv

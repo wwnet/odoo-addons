@@ -11,7 +11,7 @@
         As a security safeguard if this module is installed the database passwords can not be changed.
     """,
 
-    'author': "White Willow B.V.",
+    'author': "Alexis Yushin, White Willow B.V. <alexis@ww.net>",
     'website': "http://ww.net",
 
     # Categories can be used to filter modules in modules listing
