@@ -53,5 +53,5 @@ class ResUsers(models.Model):
             except ldap.LDAPError, e:
                 _logger.error('An LDAP exception occurred: %s', e)
 
-        _logger.error('Unable to find user %s in LDAP', self.env.user.login)
+        _logger.error('Unable authenticate user %s in LDAP', self.env.user.login)
         raise AccessDenied
