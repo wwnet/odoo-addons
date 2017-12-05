@@ -14,7 +14,7 @@
     'website': "https://github.com/wwnet/odoo-addons",
 
     'category': 'Authentication',
-    'version': '0.2',
+    'version': '0.3',
 
     # any module necessary for this one to work correctly
     'depends': ['auth_ldap'],

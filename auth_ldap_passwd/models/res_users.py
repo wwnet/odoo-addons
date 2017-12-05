@@ -50,9 +50,13 @@ class ResUsers(models.Model):
                 _logger.error("LDAP bind failed.")
                 raise AccessDenied
 
-            except ldap.LDAPError, e:
+            except ldap.LDAPError as e:
                 _logger.error('An LDAP exception occurred: %s', e)
 
         _logger.info('Unable authenticate user %s in LDAP - changing password in Odoo', self.env.user.login)
-        return super(ResUsers, self).change_password(old_passwd, new_passwd)
+
+	raise AccessDenied
+
+	# XXX Alternatively comment the above line and uncomment below line to fall-back to the database password change
+        #return super(ResUsers, self).change_password(old_passwd, new_passwd)
 
