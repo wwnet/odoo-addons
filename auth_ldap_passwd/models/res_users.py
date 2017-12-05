@@ -55,7 +55,7 @@ class ResUsers(models.Model):
 
         _logger.info('Unable authenticate user %s in LDAP - changing password in Odoo', self.env.user.login)
 
-	raise AccessDenied
+        raise AccessDenied
 
 	# XXX Alternatively comment the above line and uncomment below line to fall-back to the database password change
         #return super(ResUsers, self).change_password(old_passwd, new_passwd)
