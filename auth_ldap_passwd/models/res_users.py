@@ -53,5 +53,6 @@ class ResUsers(models.Model):
             except ldap.LDAPError, e:
                 _logger.error('An LDAP exception occurred: %s', e)
 
-        _logger.error('Unable authenticate user %s in LDAP', self.env.user.login)
-        raise AccessDenied
+        _logger.info('Unable authenticate user %s in LDAP - changing password in Odoo', self.env.user.login)
+        return super(ResUsers, self).change_password(old_passwd, new_passwd)
+
